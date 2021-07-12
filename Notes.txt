@@ -1,0 +1,48 @@
+1. npm init will intialize the npm application with default package.json and create src folder under root
+2. npm i -D webpack webpack-cli, these dependecies are used for webpack bundling the project.
+3. add "build": "webpack --mode production" in package.json scripts section. When we run
+npm run build, webpack  bundles the js files into dist folder.
+
+4. add index.js with alert("Hello World") under src folder
+
+run npm run build : will see the dist folder with index.js files
+
+5. inordere to run above js  file, we need html file so we need to install html-webpack-plugin
+
+6. html-webpack-plugin bundles the html file and add our index.js file to build folder
+
+7. for that purpose, we need webapck.config.js file
+
+  const HtmlWebPackPlugin = require('HtmlWebPackPlugin');
+
+  module.exports = {
+      plugins: [
+          template: "./src/index.html" // main index.html file
+          filename: "index.html" // this plugin adds the index.html file in dist folder with index.js file in dist folder
+      ]
+
+  };
+
+8. we need to add webpack-dev-server dev depenedency for pick up changes dynamically and run webapck server wehn development
+
+9. npm i -D webpack-dev-server
+10. add this command under scripts in package.json
+
+   "start": "webpack-dev-server --mode --open development"
+
+
+   Type Script configurations
+
+
+   TypeScript files --
+
+   There are two popular options  that compile type script files in webpack project.
+
+   1. ts-loader
+   2. babel-loader + preset-typescript
+
+
+   set up typescript
+
+
+

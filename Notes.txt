@@ -73,25 +73,76 @@ npm i -D html-webpack-plugin
     const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.ts",
-  resolve: {
+  entry: "./src/index.ts",  // starting file
+  resolve: { // ts compiler compilers all files with thes extensions
     extensions: ['.js', '.ts', '.tsx']
   },
   module:{
     rules:[{
       test: /\.tsx?$/,
-      loader: 'ts-loader',
-      exclude: '/node_modules/'
+      loader: 'ts-loader' or 'babel-loader', // what type of loader , that we configue with webpack for typescript
+      exclude: '/node_modules/' // exclude node_modules for ts compilaytion
     }]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+    new HtmlWebpackPlugin({ // plugin for injecting js files into html files
+      template: './src/index.html', // what html file that we need to run finally
+      filename: 'index.html', // final file name that will generate in dist folder by webpack
     }),
   ],
 };
 
 
+how to setup typescript project in webpack using babel loader
 
+1. npm i -D @babel/core @babel/preset-env @babel/preset-typescript
+
+@babel/preset-env is allows us to use latest js features without installing any plugins
+@babel/preset-typescript is used for remove types from typescript files and run ts files
+
+2. create .bablerc and register above presets in it.
+
+{
+  "presets": ["@babel/preset-env", "@babel/preset-typescript"]
+}
+// first @babel/preset-typescript removes the types from ts files and @babel/preset-env prepares the target env and browsers
+
+3.  lets tell webpack use babel loader to process ts files.
+
+npm i -D babel-loader
+
+4. replace babel-loader  with ts-loader in webpack.config.js
+
+5. to  beable to use type script syntax that allows us to use intialize object properties at the time of
+definitiomn which is part of the class fields proposal
+
+we need to install below plugin
+
+class A {
+  greeting = "Hello World";
+}
+
+console.log(new A().greeting);
+
+this syntax works fine with type script but babel gives us an error.
+
+so we need to intialize the value in the constuctor
+
+class A {
+  greeting = "Hello World";
+  constuctor() {
+    this.greeting = "Hello World";
+  }
+}
+
+console.log(new A().greeting);
+
+so for this reason we need below plugin
+npm i -D @babel/plugin-proposal-class-properties
+
+and add it to the babel config in .babelrc file
+{
+    "presets": ["@babel/preset-env", "@babel/preset-typescript"],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+}
 

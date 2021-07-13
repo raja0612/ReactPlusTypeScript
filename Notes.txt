@@ -181,4 +181,6 @@ index.html
 
 5. need to install @babel/preset-react for bable to compile react code
 
+    add @babel/preset-react to .bablerc file
+
 

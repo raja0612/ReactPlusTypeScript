@@ -146,3 +146,39 @@ and add it to the babel config in .babelrc file
     "plugins": ["@babel/plugin-proposal-class-properties"]
 }
 
+
+// Adding react to webpack project
+
+1. install these
+    npm i -S react react-dom 
+    npm i -D @types/react @types/react-dom
+
+2. add index.tsx file
+
+
+import React from 'react'
+import ReactDom from 'react-dom'
+
+const App = () => {
+  return <div> Hello World</div>
+}
+
+ReactDom.render(<App />, document.getElementById('root'))
+
+3. Typescript doesnot know about React jsx syntax so we need to add below 
+property to comipilerOptions in tsconfig.json
+"jsx": "react"
+
+4. add div with root index
+index.html
+<body>
+<div id="root"></div>
+</body>
+
+
+
+4. tell webpack entry point is index.tsx in webpack.config.js  
+
+5. need to install @babel/preset-react for bable to compile react code
+
+

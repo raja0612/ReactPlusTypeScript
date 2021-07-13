@@ -183,4 +183,29 @@ index.html
 
     add @babel/preset-react to .bablerc file
 
+    {
+    "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+    "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+
+
+// adding source maps
+
+source maps are used to map the error info like line number and error messsage from
+
+webpack compiled code to original source file (ts, tsx)
+
+webpack devtool is used for source mapping
+
+webpack.config.js
+
+ devtool: "eval-source-map"
+
+ for production
+ the value will be none, source-map, hidden-source-map,nosources-source-map
+
+ incase of ts-loader instead of babel-loader
+
+ add "sourceMap": true to tsconfig.json comipilerOptions
+
 

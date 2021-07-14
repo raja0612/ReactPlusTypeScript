@@ -209,3 +209,53 @@ webpack.config.js
  add "sourceMap": true to tsconfig.json comipilerOptions
 
 
+ // How to handle css with webpack
+
+npm i -D css-loader
+
+webpack.config.js
+
+module {
+  rules: {
+    [ 
+      {
+         test: /\.css$/,  // apply all css files
+         loader: 'css-loader'
+
+      }
+     
+
+    ]
+
+  }
+}
+
+
+npm i -D mini-css-extract-plugin
+this plugin adds parsed css to thee document.
+
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module {
+  rules: {
+    [ 
+      {
+         test: /\.css$/,  // apply all css files
+         use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}] // use for multiple plugins config
+
+      }
+     
+
+    ]
+
+  }
+}
+ plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+    }),
+    new MiniCssExtractPlugin(),
+  ],
+

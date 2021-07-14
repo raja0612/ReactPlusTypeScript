@@ -259,3 +259,26 @@ module {
     new MiniCssExtractPlugin(),
   ],
 
+
+
+Set up a webpack loader for SVG files
+
+
+npm i -D @svgr/webpack
+
+webpack.config.js
+rules: {[
+  test: /\.svg$/,
+  loader: '@svgr/webpack
+}]
+
+Describe .svg imports to typescript
+
+custom.d.ts
+
+declare module '*.svg' {
+  const ReactComponent: React.ReactComponentType<React.SVGAttributes<SVGElement>>;
+  export default ReactComponent;
+}
+
+

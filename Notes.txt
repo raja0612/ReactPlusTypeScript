@@ -242,7 +242,7 @@ module {
     [ 
       {
          test: /\.css$/,  // apply all css files
-         use: [MiniCssExtractPlugin.loader, {loader: 'css-loader'}] // use for multiple plugins config
+         use: [MiniCssExtractPlugin.loader, {loader: 'css-loader', options: {module: true}}] // use for multiple plugins config
 
       }
      
